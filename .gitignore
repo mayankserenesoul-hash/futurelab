@@ -1,0 +1,13 @@
+# secrets: never commit these
+.env
+.env.*
+!.env.example
+
+# dependencies and build output
+node_modules
+dist
+
+# leftovers from setting the project up
+*.zip
+/futurelab/
+/futurelab-old/

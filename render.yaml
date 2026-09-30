@@ -1,0 +1,23 @@
+# Tells Render how to build and run FutureLab as one web service.
+# The website and the API are served together from one address.
+services:
+  - type: web
+    name: futurelab
+    runtime: node
+    plan: free
+    # --include=dev: the build needs Vite, which lives in devDependencies
+    buildCommand: npm install --include=dev && npm --prefix server install && npm run build
+    startCommand: node server/index.js
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false # Render asks you for this value during setup. It is never stored in the repo.
+      - key: GEMINI_MODEL
+        value: gemini-3.8-flash
+      - key: GEMINI_FALLBACK_MODEL
+        value: gemini-3.5-flash-lite

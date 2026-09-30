@@ -1,0 +1,33 @@
+{
+  "name": "futurelab",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+  "dev": "vite",
+  "server": "npm --prefix server run dev",
+  "dev:all": "concurrently -n WEB,API -c cyan,magenta \"npm run dev\" \"npm run server\"",
+  "build": "vite build",
+  "start": "node server/index.js",
+  "lint": "oxlint",
+  "preview": "vite preview",
+  "test": "node --test src/simulation/simulation.test.js src/simulation/insights.test.js src/simulation/robustness.test.js src/services/api.test.js src/styles/contrast.test.js src/utils/polish.test.js server/explain.test.js server/limits.test.js",
+  "test:api": "node --test server/api.test.js server/deploy.test.js",
+  "check": "npm run lint && npm test && npm run test:api && npm run build"
+},
+"engines": {
+  "node": ">=20.19.0"
+},
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.0.0",
+    "recharts": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "latest",
+    "concurrently": "^9.0.0",
+    "oxlint": "latest",
+    "vite": "latest"
+  }
+}
